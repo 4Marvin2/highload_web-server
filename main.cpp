@@ -9,8 +9,8 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <sys/stat.h>
-#include <sys/sysctl.h>
-// #include <sys/sysinfo.h>
+// #include <sys/sysctl.h>
+#include <sys/sysinfo.h>
 #include <sys/wait.h>
 #include <arpa/inet.h>
 #include <netinet/in.h>
@@ -170,7 +170,7 @@ string create_response(Request& req, const string& root) {
         return res.get_string("", 0, "");
     }
 
-    path = "." + path;
+    // path = "." + path;
     bool isDir = false;
     struct stat s;
     if (stat(path.c_str(), &s) == 0) {
@@ -298,10 +298,10 @@ private:
 int main(void)
 {
     string p1, p2, path;
-    int count;
-    size_t size=sizeof(count);
-    int cpuLimit = sysctlbyname("hw.ncpu",&count,&size,NULL,0)?0:count;; 
-    // int cpuLimit = get_nprocs(); 
+    // int count;
+    // size_t size=sizeof(count);
+    // int cpuLimit = sysctlbyname("hw.ncpu",&count,&size,NULL,0)?0:count;; 
+    int cpuLimit = get_nprocs(); 
     ifstream conf(CONF);
     conf >> p1 >> cpuLimit >> p2 >> path;
 
