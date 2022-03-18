@@ -35,5 +35,5 @@ run-nginx:
 	docker run -p 8000:8000 --name nginx -t nginx
 
 .PHONY: run-nginx-benchmark
-run-web_server-benchmark:
+run-nginx-benchmark:
 	ab -n 10000 -c 10 127.0.0.1:8000/httptest/wikipedia_russia.html
